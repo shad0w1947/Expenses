@@ -1,8 +1,8 @@
 package com.example.shad0w.todolist;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
@@ -15,14 +15,13 @@ public class Add_Expenses extends AppCompatActivity {
     }
 
     public void addexpenses(View view) {
-        EditText name=findViewById(R.id.nameEditText);
-        EditText amount=findViewById(R.id.amountEditText);
+        EditText name=findViewById(R.id.descriptonEditText);
+        EditText amount=findViewById(R.id.titleEditText);
         String Sname=name.getText().toString();
         String Samount=amount.getText().toString();
         Intent intent=getIntent();
-        int price=Integer.parseInt(Samount);
         intent.putExtra("name",Sname);
-        intent.putExtra("amount",price);
+        intent.putExtra("title",Samount);
         setResult(2,intent);
         finish();
     }

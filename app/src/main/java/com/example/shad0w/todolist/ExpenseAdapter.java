@@ -1,7 +1,6 @@
 package com.example.shad0w.todolist;
 
 import android.content.Context;
-import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -35,8 +34,8 @@ public class ExpenseAdapter extends ArrayAdapter {
         if(output==null)
         {
             output=inflater.inflate(R.layout.row_layout,parent,false);
-            TextView name = output.findViewById(R.id.name);
-            TextView price = output.findViewById(R.id.price);
+            TextView name = output.findViewById(R.id.descripton);
+            TextView price = output.findViewById(R.id.title);
             viewholder v=new viewholder();
             v.amount=price;
             v.name=name;
@@ -45,8 +44,8 @@ public class ExpenseAdapter extends ArrayAdapter {
         Expenses expenses = items.get(position);
         viewholder v=(viewholder)output.getTag();
        // TextView check = output.findViewById(R.id.check);
-        v.name.setText(expenses.getName());
-        v.amount.setText(expenses.getPrice() + "");
+        v.name.setText(expenses.getDescription());
+        v.amount.setText(expenses.getTitle());
         //check.setText(expenses.isCheck() + "");
         return output;
     }
