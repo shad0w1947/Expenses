@@ -5,4 +5,6 @@ import android.widget.TextView;
 public class viewholder {
     TextView name;
     TextView amount;
+    TextView date;
+    TextView time;
 }

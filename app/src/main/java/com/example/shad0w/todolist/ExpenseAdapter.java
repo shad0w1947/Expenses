@@ -36,9 +36,13 @@ public class ExpenseAdapter extends ArrayAdapter {
             output=inflater.inflate(R.layout.row_layout,parent,false);
             TextView name = output.findViewById(R.id.descripton);
             TextView price = output.findViewById(R.id.title);
+            TextView date=output.findViewById(R.id.Tdate);
+            TextView time=output.findViewById(R.id.Ttime);
             viewholder v=new viewholder();
             v.amount=price;
             v.name=name;
+            v.date=date;
+            v.time=time;
             output.setTag(v);
         }
         Expenses expenses = items.get(position);
@@ -46,6 +50,8 @@ public class ExpenseAdapter extends ArrayAdapter {
        // TextView check = output.findViewById(R.id.check);
         v.name.setText(expenses.getDescription());
         v.amount.setText(expenses.getTitle());
+        v.time.setText(expenses.getTime());
+        v.date.setText(expenses.getDate());
         //check.setText(expenses.isCheck() + "");
         return output;
     }

@@ -7,17 +7,48 @@
     tools:context=".Add_Expenses">
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:id="@+id/titleEditText"
         android:hint="Enter title"/>
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="6"
         android:id="@+id/descriptonEditText"
         android:hint="Enter detail"/>
-<Button
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="01/01/2018"
+        android:id="@+id/showdate"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="00:00"
+        android:layout_weight="1"
+        android:id="@+id/showtime"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/date"
+        android:onClick="date"
+        android:text="Date picker"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/time"
+        android:onClick="time"
+        android:text="pick time"/>
+
+    <Button
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="0dp"
+    android:layout_weight="1"
     android:text="save"
     android:onClick="addexpenses"/>
 
