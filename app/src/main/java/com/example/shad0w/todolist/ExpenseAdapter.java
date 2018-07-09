@@ -48,8 +48,8 @@ public class ExpenseAdapter extends ArrayAdapter {
         Expenses expenses = items.get(position);
         viewholder v=(viewholder)output.getTag();
        // TextView check = output.findViewById(R.id.check);
-        v.name.setText(expenses.getDescription());
         v.amount.setText(expenses.getTitle());
+        v.name.setText(expenses.getDescription());
         v.time.setText(expenses.getTime());
         v.date.setText(expenses.getDate());
         //check.setText(expenses.isCheck() + "");

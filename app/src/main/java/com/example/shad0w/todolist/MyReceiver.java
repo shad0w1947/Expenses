@@ -28,28 +28,28 @@ public class MyReceiver extends BroadcastReceiver {
         Log.i("alarm", "called" + " " + intent.getAction());
         Bundle bundle = intent.getExtras();
         if (intent.getAction() != null && intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
-            todohelper helpper=todohelper.getInstance(context);
-            SQLiteDatabase database=helpper.getReadableDatabase();
-            String[] col={contract.ALARM,contract.ID};
-            Cursor cursor=database.query(contract.TABLE_NAME,null,null,null,null,null,null);
-            while (cursor.moveToNext()){
-                Long time=System.currentTimeMillis();
+            todohelper helpper = todohelper.getInstance(context);
+            SQLiteDatabase database = helpper.getReadableDatabase();
+            String[] col = {contract.ALARM, contract.ID};
+            Cursor cursor = database.query(contract.TABLE_NAME, null, null, null, null, null, null);
+            while (cursor.moveToNext()) {
+                Long time = System.currentTimeMillis();
                 long id = cursor.getLong(cursor.getColumnIndex(contract.ID));
-                long alarm=cursor.getLong(cursor.getColumnIndex(contract.ALARM));
-                String title=cursor.getString(cursor.getColumnIndex(contract.COLUMN_TITLE));
-                String des=cursor.getString(cursor.getColumnIndex(contract.COLUMN_DETAIL));
-                if(time<alarm){
+                long alarm = cursor.getLong(cursor.getColumnIndex(contract.ALARM));
+                String title = cursor.getString(cursor.getColumnIndex(contract.COLUMN_TITLE));
+                String des = cursor.getString(cursor.getColumnIndex(contract.COLUMN_DETAIL));
+                if (time < alarm) {
                     AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
-                    Log.i("alarm",alarm+" function "+id+" "+System.currentTimeMillis());
+                    Log.i("alarm", alarm + " function " + id + " " + System.currentTimeMillis());
                     Intent intent1 = new Intent(context.getApplicationContext(), MyReceiver.class);
-                    intent1.putExtra("title",title);
-                    intent1.putExtra("des",des);
-                    PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), (int) id, intent1, 0);
+                    intent1.putExtra("title", title);
+                    intent1.putExtra("des", des);
+                    int alarmid = (int) id;
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), alarmid, intent1, 0);
                     alarmManager.set(AlarmManager.RTC_WAKEUP, alarm, pendingIntent);
                 }
             }
-        }
-      else   if (intent.getAction() != null && intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")) {
+        } else if (intent.getAction() != null && intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")) {
             try {
                 if (bundle != null) {
                     final Object[] pdusObj = (Object[]) bundle.get("pdus");
@@ -78,9 +78,9 @@ public class MyReceiver extends BroadcastReceiver {
                     Intent open = new Intent(context, Add_Expenses.class);
                     open.putExtra("title", senderNum);
                     open.putExtra("detail", message);
-                    Log.i("hello",senderNum+" "+message);
-                    long requestcode=System.currentTimeMillis();
-                    PendingIntent pendingIntent = PendingIntent.getActivity(context, (int)requestcode, open, 0);
+                    Log.i("hello", senderNum + " " + message);
+                    long request_code = System.currentTimeMillis() / 1000;
+                    PendingIntent pendingIntent = PendingIntent.getActivity(context, (int) request_code, open, 0);
                     builder.setContentIntent(pendingIntent);
                     Notification notification = builder.build();
                     manager.notify(1, notification);

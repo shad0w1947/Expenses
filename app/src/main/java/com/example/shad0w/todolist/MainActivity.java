@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     ArrayList<Expenses> expenses = new ArrayList<>();
     ExpenseAdapter adapter;
-    SharedPreferences sharedPreferences;
+    //SharedPreferences sharedPreferences;
     int number = 0;
 
     @Override
